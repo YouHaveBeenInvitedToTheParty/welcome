@@ -9,7 +9,7 @@ export function ConceptSection() {
       </h2>
       <div className="section-body">
         <p>
-          Show up at the party pretending it&apos;s whatever theme you want — wedding,
+          Show up at the party pretending it&apos;s whatever theme you want... wedding,
           tea ceremony, princess, pajama, your call.
         </p>
         <p className="concept-doorline">

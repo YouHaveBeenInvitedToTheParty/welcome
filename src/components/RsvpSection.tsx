@@ -9,7 +9,7 @@ export function RsvpSection() {
         <p className="rsvp-main">Bring fun and booze.</p>
         <p>
           Bring something to drink or share. Good vibes
-          are the only dress code... but a costume helps.
+          are the only dress code... but a costume helps. Be ready for the WARMEST house warming party ever.s
         </p>
       </div>
     </section>
