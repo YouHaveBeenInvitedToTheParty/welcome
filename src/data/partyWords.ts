@@ -2,7 +2,7 @@ export const PARTY_WORDS = [
   "wedding",
   "tea ceremony",
   "princess",
-  "pijama",
+  "pajama",
   "disco",
   "masquerade",
   "karaoke",
