@@ -1,4 +1,4 @@
-# Welcome — Party Invite
+# Party Invite
 
 A flashy landing page for your house party invite. The hero asks **"Is this a ____ PARTY?"** while random party themes spin through like a roulette wheel.
 
