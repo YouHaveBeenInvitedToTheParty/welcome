@@ -1,27 +1,32 @@
-import { EVENT } from "../data/event";
-
-function formatGoogleDates() {
-  return "20260725T170000/20260726T010000";
-}
+export type CalendarConfig = {
+  title: string;
+  description: string;
+  location: string;
+  googleDates: string;
+  uid: string;
+  dtStart: string;
+  dtEnd: string;
+  filename: string;
+};
 
 function formatIcsDate(date: Date) {
   return date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z/, "Z");
 }
 
-export function getGoogleCalendarUrl() {
+export function getGoogleCalendarUrl(config: CalendarConfig) {
   const params = new URLSearchParams({
     action: "TEMPLATE",
-    text: EVENT.title,
-    dates: formatGoogleDates(),
-    details: EVENT.description,
-    location: EVENT.location,
+    text: config.title,
+    dates: config.googleDates,
+    details: config.description,
+    location: config.location,
     ctz: "Europe/Amsterdam",
   });
 
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }
 
-export function downloadIcsFile() {
+export function downloadIcsFile(config: CalendarConfig) {
   const ics = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
@@ -46,13 +51,13 @@ export function downloadIcsFile() {
     "END:STANDARD",
     "END:VTIMEZONE",
     "BEGIN:VEVENT",
-    `UID:party-20260725@welcome`,
+    `UID:${config.uid}`,
     `DTSTAMP:${formatIcsDate(new Date())}`,
-    "DTSTART;TZID=Europe/Amsterdam:20260725T170000",
-    "DTEND;TZID=Europe/Amsterdam:20260726T010000",
-    `SUMMARY:${EVENT.title}`,
-    `DESCRIPTION:${EVENT.description.replace(/\n/g, "\\n")}`,
-    `LOCATION:${EVENT.location}`,
+    `DTSTART;TZID=Europe/Amsterdam:${config.dtStart}`,
+    `DTEND;TZID=Europe/Amsterdam:${config.dtEnd}`,
+    `SUMMARY:${config.title}`,
+    `DESCRIPTION:${config.description.replace(/\n/g, "\\n")}`,
+    `LOCATION:${config.location}`,
     "END:VEVENT",
     "END:VCALENDAR",
   ].join("\r\n");
@@ -61,19 +66,19 @@ export function downloadIcsFile() {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = "house-party.ics";
+  link.download = config.filename;
   link.click();
   URL.revokeObjectURL(url);
 }
 
-export function addToCalendar() {
+export function addToCalendar(config: CalendarConfig) {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   if (isMobile) {
-    downloadIcsFile();
+    downloadIcsFile(config);
     return;
   }
 
-  window.open(getGoogleCalendarUrl(), "_blank", "noopener,noreferrer");
-  downloadIcsFile();
+  window.open(getGoogleCalendarUrl(config), "_blank", "noopener,noreferrer");
+  downloadIcsFile(config);
 }

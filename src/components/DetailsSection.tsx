@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EVENT } from "../data/event";
+import { EVENT, HOUSE_CALENDAR } from "../data/event";
 import { addToCalendar } from "../utils/calendar";
 import "./sections.css";
 import "./AddToCalendarButton.css";
@@ -14,7 +14,7 @@ export function DetailsSection() {
     }
 
     if (clickStage === "wish") {
-      addToCalendar();
+      addToCalendar(HOUSE_CALENDAR);
       setClickStage("added");
     }
   };

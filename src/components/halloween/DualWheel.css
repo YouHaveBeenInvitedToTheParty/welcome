@@ -1,0 +1,185 @@
+.dual-wheel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.35rem, 2vw, 1rem);
+  margin: 0.5rem 0 0.25rem;
+}
+
+.dual-wheel__hit {
+  position: relative;
+  width: min(68vw, 340px);
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dual-wheel__hit:disabled {
+  cursor: default;
+}
+
+.dual-wheel__disk {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow:
+    0 0 0 6px #2a2118,
+    0 0 0 8px #c4b48a,
+    0 0 40px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.dual-wheel__disk--turbo {
+  transition-timing-function: linear;
+}
+
+.dual-wheel__wedges {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from -11.25deg,
+    #1a1210 0deg 180deg,
+    #efe6d2 180deg 360deg
+  );
+}
+
+.dual-wheel__hub {
+  position: absolute;
+  inset: 32%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #3a3028, #120e0c 70%);
+  border: 2px solid #c4b48a;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.dual-wheel__sun,
+.dual-wheel__moon {
+  position: absolute;
+  width: 42%;
+  height: 42%;
+  border-radius: 50%;
+}
+
+.dual-wheel__sun {
+  top: 18%;
+  left: 14%;
+  background: radial-gradient(circle at 40% 35%, #f3e6c0, #c9a227);
+  box-shadow: 0 0 12px rgba(201, 162, 39, 0.7);
+}
+
+.dual-wheel__moon {
+  bottom: 16%;
+  right: 12%;
+  background: radial-gradient(circle at 40% 35%, #f0f0f0, #8a8a92 70%, #1a1210 71%);
+  box-shadow: 0 0 12px rgba(180, 180, 200, 0.4);
+}
+
+.dual-wheel__word {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  z-index: 3;
+}
+
+.dual-wheel__word-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: center;
+  translate: -50% calc(-1 * min(30vw, 148px));
+  font-family: "Cinzel", serif;
+  font-size: clamp(0.48rem, 1.6vw, 0.72rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #1a120c;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+  opacity: 0.92;
+  transition:
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease;
+}
+
+.dual-wheel__word--chaos .dual-wheel__word-label {
+  font-family: "Creepster", cursive;
+  letter-spacing: 0.04em;
+  color: #ff7a3a;
+  text-shadow:
+    0 0 8px rgba(255, 50, 0, 0.7),
+    0 1px 2px #000;
+}
+
+.dual-wheel__word-label--long {
+  font-size: clamp(0.34rem, 1.1vw, 0.5rem);
+  letter-spacing: 0.03em;
+  white-space: normal;
+  width: 4.8rem;
+  line-height: 1.05;
+  text-align: center;
+}
+
+.dual-wheel__word--active .dual-wheel__word-label {
+  font-size: clamp(0.58rem, 1.9vw, 0.86rem);
+  filter: drop-shadow(0 0 8px currentColor);
+  opacity: 1;
+}
+
+.dual-wheel__word--active .dual-wheel__word-label--long {
+  font-size: clamp(0.4rem, 1.3vw, 0.58rem);
+}
+
+.dual-wheel__arrow {
+  width: 0;
+  height: 0;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.35));
+}
+
+.dual-wheel__arrow--left {
+  border-style: solid;
+  border-width: 16px 0 16px 26px;
+  border-color: transparent transparent transparent #1c1712;
+}
+
+.dual-wheel__arrow--right {
+  border-style: solid;
+  border-width: 16px 26px 16px 0;
+  border-color: transparent #ff3b12 transparent transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 50, 10, 0.55));
+}
+
+.halloween-page--inverted .dual-wheel__arrow--left {
+  border-color: transparent transparent transparent #ff3b12;
+  filter: drop-shadow(0 0 10px rgba(255, 50, 10, 0.55));
+}
+
+.halloween-page--inverted .dual-wheel__arrow--right {
+  border-color: transparent #1c1712 transparent transparent;
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.35));
+}
+
+.dual-wheel--storming .dual-wheel__disk {
+  box-shadow:
+    0 0 0 6px #2a2118,
+    0 0 0 8px #ff3b12,
+    0 0 50px rgba(255, 50, 10, 0.35);
+}
+
+@media (min-width: 720px) {
+  .dual-wheel__hit {
+    width: min(38vw, 380px);
+  }
+
+  .dual-wheel__word-label {
+    translate: -50% calc(-1 * min(16.5vw, 168px));
+  }
+}

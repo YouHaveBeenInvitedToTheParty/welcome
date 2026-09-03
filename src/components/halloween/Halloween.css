@@ -1,0 +1,747 @@
+body[data-page="halloween"] {
+  overflow-x: clip;
+}
+
+.halloween-page {
+  position: relative;
+  min-height: 100dvh;
+  color: #1c1712;
+  scroll-behavior: smooth;
+}
+
+.hw-split {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  pointer-events: none;
+}
+
+.hw-split__order {
+  order: 1;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(255, 248, 230, 0.55), transparent 55%),
+    linear-gradient(180deg, #f0e6d2 0%, #dcc9a6 100%);
+}
+
+.hw-split__chaos {
+  order: 2;
+  background:
+    radial-gradient(ellipse 70% 50% at 80% 20%, rgba(180, 20, 0, 0.35), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 60% 90%, rgba(80, 0, 40, 0.45), transparent 55%),
+    linear-gradient(180deg, #120c0a 0%, #070403 100%);
+}
+
+.hw-split__crack {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    #2a2118 0%,
+    #ff2d0a 35%,
+    #f0e6d2 50%,
+    #ff2d0a 65%,
+    #1a1210 100%
+  );
+  box-shadow:
+    0 0 18px rgba(255, 45, 10, 0.55),
+    -24px 0 48px rgba(240, 230, 210, 0.12),
+    24px 0 48px rgba(255, 40, 0, 0.18);
+}
+
+.hw-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.09;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hw-hero,
+.hw-section {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: calc(100dvh - 4.6rem);
+  display: flex;
+  flex-direction: column;
+  padding: 3.5rem clamp(0.7rem, 3vw, 2rem) 0.6rem;
+}
+
+.hw-section-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hw-link {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 540vh;
+  padding-bottom: 12vh;
+}
+
+.hw-link__side {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.hw-link__side--olive {
+  align-items: flex-end;
+}
+
+.hw-link__side--wood {
+  align-items: flex-start;
+}
+
+.hw-link__art {
+  position: absolute;
+  top: 0;
+  bottom: 12vh;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hw-link__art--olive {
+  left: 0;
+  width: calc(50vw - 1.5px);
+}
+
+.hw-link__art--wood {
+  left: calc(50vw + 1.5px);
+  width: calc(50vw - 1.5px);
+}
+
+.hw-link__art--back {
+  z-index: 1;
+}
+
+.hw-link__art--front {
+  z-index: 3;
+}
+
+.hw-link__svg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: min(100%, clamp(96px, 18vw, 160px));
+}
+
+.hw-link__art--olive .hw-link__svg {
+  right: 0;
+}
+
+.hw-link__art--wood .hw-link__svg {
+  left: 0;
+}
+
+.hw-travel {
+  position: sticky;
+  top: calc(100dvh - 4.5rem);
+  z-index: 2;
+  flex-shrink: 0;
+  margin: 0.15rem 0 0;
+  padding: 0.45rem 0.85rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hw-travel--continue {
+  font-family: "Cinzel", serif;
+  font-size: clamp(0.78rem, 2vw, 1.05rem);
+  color: #1c1712;
+  text-align: right;
+  margin-right: clamp(0.15rem, 1.6vw, 0.7rem);
+}
+
+.hw-travel--descend {
+  font-family: "Creepster", "Cinzel", cursive;
+  font-size: clamp(1.05rem, 2.8vw, 1.4rem);
+  color: #ff4d1c;
+  text-shadow: 0 0 14px rgba(255, 40, 0, 0.4);
+  text-align: left;
+  margin-left: clamp(0.15rem, 1.6vw, 0.7rem);
+}
+
+.hw-travel--continue:hover,
+.hw-travel--continue:focus-visible {
+  color: #3f6a28;
+}
+
+.hw-travel--descend:hover,
+.hw-travel--descend:focus-visible {
+  color: #ffd0b0;
+}
+
+.halloween-page--inverted .hw-link__side--olive {
+  order: 2;
+  align-items: flex-start;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.halloween-page--inverted .hw-link__side--wood {
+  order: 1;
+  align-items: flex-end;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.halloween-page--inverted .hw-link__art--olive {
+  left: calc(50vw + 1.5px);
+}
+
+.halloween-page--inverted .hw-link__art--wood {
+  left: 0;
+}
+
+.halloween-page--inverted .hw-link__art--olive .hw-link__svg {
+  right: auto;
+  left: 0;
+  transform: scaleX(-1);
+}
+
+.halloween-page--inverted .hw-link__art--wood .hw-link__svg {
+  left: auto;
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.halloween-page--inverted .hw-travel--continue {
+  text-align: left;
+  margin-right: 0;
+  margin-left: clamp(0.15rem, 1.6vw, 0.7rem);
+}
+
+.halloween-page--inverted .hw-travel--descend {
+  text-align: right;
+  margin-left: 0;
+  margin-right: clamp(0.15rem, 1.6vw, 0.7rem);
+}
+
+.dual-text {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(1.25rem, 5vw, 3.25rem);
+  width: 100%;
+}
+
+.dual-order {
+  order: 1;
+  text-align: right;
+  padding-right: 0.15rem;
+  font-family: "Cinzel", serif;
+  color: #1c1712;
+}
+
+.dual-chaos {
+  order: 2;
+  text-align: left;
+  padding-left: 0.15rem;
+  font-family: "Creepster", "Cinzel", cursive;
+  color: #ff4d1c;
+  text-shadow: 0 0 16px rgba(255, 40, 0, 0.35);
+}
+
+.hw-eyebrow {
+  font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.hw-eyebrow .dual-order {
+  font-weight: 600;
+  color: #5a4a38;
+}
+
+.hw-eyebrow .dual-chaos {
+  letter-spacing: 0.14em;
+  animation: hw-flicker 3.2s ease-in-out infinite;
+}
+
+.hw-title {
+  font-size: clamp(1.55rem, 5.2vw, 3.1rem);
+  line-height: 1.05;
+  margin-bottom: 1.25rem;
+}
+
+.hw-title .dual-order {
+  letter-spacing: 0.04em;
+}
+
+.hw-title .dual-chaos {
+  transform: rotate(-1.5deg);
+  transform-origin: left center;
+}
+
+.hw-body {
+  font-size: clamp(0.82rem, 2.1vw, 1.05rem);
+  line-height: 1.55;
+  margin: 0.9rem 0;
+}
+
+.hw-body .dual-order {
+  font-family: "Cormorant Garamond", "Cinzel", serif;
+  font-weight: 500;
+  color: #2a2218;
+}
+
+.hw-body .dual-chaos {
+  font-family: "Special Elite", "Creepster", cursive;
+  font-size: 0.95em;
+  line-height: 1.45;
+  color: #ff7a45;
+  animation: hw-jitter 4s steps(2, end) infinite;
+}
+
+.hw-tagline {
+  margin-top: 1.25rem;
+}
+
+.hw-scroll {
+  position: relative;
+  z-index: 3;
+  flex-shrink: 0;
+  width: 100%;
+  margin: 1.1rem 0 0;
+  padding: 0.85rem 0 0.5rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: clamp(0.65rem, 1.6vw, 0.78rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hw-scroll .dual-order {
+  color: #6a5a48;
+}
+
+.hw-scroll--up .dual-order {
+  color: #1c1712;
+}
+
+.hw-scroll--up .dual-chaos {
+  color: #ff4d1c;
+}
+
+.hw-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: 1.5rem 0 1.75rem;
+}
+
+.hw-detail {
+  font-size: clamp(1rem, 3.2vw, 1.55rem);
+  line-height: 1.2;
+}
+
+.hw-detail-label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.hw-detail .dual-order .hw-detail-label {
+  color: #7a684c;
+}
+
+.hw-detail .dual-chaos .hw-detail-label {
+  color: #ff8a5a;
+}
+
+.hw-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hw-calendar-pair {
+  width: 100%;
+}
+
+.hw-split-btn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(1.25rem, 5vw, 3.25rem);
+  width: 100%;
+  padding: 0.85rem 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hw-split-btn .dual-order,
+.hw-split-btn .dual-chaos {
+  padding: 0.7rem 0.85rem;
+  font-size: clamp(0.78rem, 2vw, 0.95rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hw-split-btn .dual-order {
+  border: 1px solid #2a2118;
+  background: rgba(255, 252, 244, 0.55);
+}
+
+.hw-split-btn .dual-chaos {
+  border: 1px solid #ff3b12;
+  background: rgba(40, 8, 4, 0.55);
+  font-size: clamp(0.9rem, 2.4vw, 1.15rem);
+}
+
+.hw-split-btn:hover:not(:disabled) .dual-order {
+  background: #1c1712;
+  color: #f0e6d2;
+}
+
+.hw-split-btn:hover:not(:disabled) .dual-chaos {
+  background: #ff3b12;
+  color: #140a08;
+}
+
+.hw-split-btn:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.hw-cal-btn {
+  padding: 0.7rem 0.85rem;
+  border-radius: 0;
+  font-size: clamp(0.78rem, 2vw, 0.95rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hw-cal-btn.dual-order {
+  border: 1px solid #2a2118;
+  background: rgba(255, 252, 244, 0.55);
+  color: #1c1712;
+  font-family: "Cinzel", serif;
+}
+
+.hw-cal-btn.dual-chaos {
+  border: 1px solid #ff3b12;
+  background: rgba(40, 8, 4, 0.55);
+  color: #ff4d1c;
+  font-family: "Creepster", "Cinzel", cursive;
+  font-size: clamp(0.9rem, 2.4vw, 1.15rem);
+}
+
+.hw-cal-btn.dual-order:hover:not(:disabled) {
+  background: #1c1712;
+  color: #f0e6d2;
+}
+
+.hw-cal-btn.dual-chaos:hover:not(:disabled) {
+  background: #ff3b12;
+  color: #140a08;
+}
+
+.hw-cal-btn--held.dual-order {
+  background: #1c1712;
+  color: #f0e6d2;
+}
+
+.hw-cal-btn--held.dual-chaos {
+  background: #ff3b12;
+  color: #140a08;
+}
+
+.hw-cal-btn:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.hw-cal-btn--done.dual-order {
+  background: #1c1712;
+  color: #f0e6d2;
+}
+
+.hw-cal-btn--done.dual-chaos {
+  background: #ff3b12;
+  color: #140a08;
+}
+
+.hw-calendar-msg {
+  font-size: clamp(0.9rem, 2.4vw, 1.15rem);
+}
+
+.hw-section--rsvp {
+  padding-bottom: 1.4rem;
+}
+
+.hw-rsvp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+.hw-field-label {
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  margin-bottom: 0.4rem;
+}
+
+.hw-input {
+  display: block;
+  width: min(100%, 22rem);
+  margin: 0.55rem auto 0;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid #2a2118;
+  background: linear-gradient(90deg, #f7f0de 50%, #140c0a 50%);
+  color: #c4a574;
+  font-family: "Cinzel", serif;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.hw-input:focus {
+  outline: 2px solid #ff3b12;
+  outline-offset: 2px;
+}
+
+.hw-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  border: 0;
+  min-width: 0;
+}
+
+.hw-choice-btn--on .dual-order {
+  background: #1c1712;
+  color: #f0e6d2;
+}
+
+.hw-choice-btn--on .dual-chaos {
+  background: #ff3b12;
+  color: #140a08;
+}
+
+@keyframes hw-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  46% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+  54% {
+    opacity: 1;
+  }
+}
+
+@keyframes hw-jitter {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0.5px, -0.4px);
+  }
+  50% {
+    transform: translate(-0.4px, 0.4px);
+  }
+  75% {
+    transform: translate(0.3px, 0.2px);
+  }
+}
+
+.halloween-page--inverted .hw-split__order {
+  order: 2;
+}
+
+.halloween-page--inverted .hw-split__chaos {
+  order: 1;
+}
+
+.halloween-page--inverted .dual-order {
+  order: 2;
+  text-align: left;
+  padding-right: 0;
+  padding-left: 0.15rem;
+}
+
+.halloween-page--inverted .dual-chaos {
+  order: 1;
+  text-align: right;
+  padding-left: 0;
+  padding-right: 0.15rem;
+}
+
+.halloween-page--inverted .hw-title .dual-chaos {
+  transform-origin: right center;
+  transform: rotate(1.5deg);
+}
+
+.halloween-page--inverted .hw-input {
+  background: linear-gradient(90deg, #140c0a 50%, #f7f0de 50%);
+}
+
+.hw-lightning {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.hw-lightning__flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 50% 80% at 50% 40%,
+    rgba(255, 255, 255, 0.55),
+    rgba(180, 210, 255, 0.08) 45%,
+    transparent 70%
+  );
+}
+
+.hw-lightning__bolts {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #f7fbff;
+  stroke-width: 0.55;
+  stroke-linecap: square;
+  filter: drop-shadow(0 0 8px #fff) drop-shadow(0 0 18px #9cf);
+}
+
+.halloween-page--storm .hw-lightning {
+  animation: hw-storm-flash 0.16s steps(2, end) infinite;
+}
+
+.halloween-page--storm .hw-split__crack {
+  width: 5px;
+  background: #fff;
+  box-shadow:
+    0 0 18px #fff,
+    0 0 48px #9cf,
+    0 0 80px rgba(255, 45, 10, 0.6);
+}
+
+.halloween-page--haunt .hw-lightning {
+  animation: hw-haunt-flash 0.78s ease-out;
+}
+
+.halloween-page--haunt .hw-split__crack {
+  animation: hw-haunt-crack 0.78s ease-out;
+}
+
+@keyframes hw-storm-flash {
+  0%,
+  55%,
+  100% {
+    opacity: 0;
+  }
+  58% {
+    opacity: 0.95;
+  }
+  64% {
+    opacity: 0.15;
+  }
+  86% {
+    opacity: 0;
+  }
+  88% {
+    opacity: 0.55;
+  }
+  92% {
+    opacity: 0;
+  }
+}
+
+@keyframes hw-haunt-flash {
+  0%,
+  18% {
+    opacity: 0;
+  }
+  22% {
+    opacity: 0.9;
+  }
+  28% {
+    opacity: 0.05;
+  }
+  62% {
+    opacity: 0;
+  }
+  68% {
+    opacity: 0.45;
+  }
+  80%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hw-haunt-crack {
+  0%,
+  100% {
+    background: linear-gradient(
+      to bottom,
+      #2a2118 0%,
+      #ff2d0a 35%,
+      #f0e6d2 50%,
+      #ff2d0a 65%,
+      #1a1210 100%
+    );
+    box-shadow:
+      0 0 18px rgba(255, 45, 10, 0.55),
+      -24px 0 48px rgba(240, 230, 210, 0.12),
+      24px 0 48px rgba(255, 40, 0, 0.18);
+  }
+  22%,
+  68% {
+    background: #f4fbff;
+    box-shadow:
+      0 0 22px #fff,
+      0 0 60px #9cf;
+  }
+}
+
+@media (max-width: 520px) {
+  .hw-title {
+    font-size: clamp(1.2rem, 7vw, 1.7rem);
+  }
+
+  .hw-body .dual-chaos {
+    font-size: 0.78em;
+  }
+
+  .hw-split-btn .dual-order,
+  .hw-split-btn .dual-chaos {
+    padding: 0.55rem 0.4rem;
+  }
+}

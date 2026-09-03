@@ -14,7 +14,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173).
+Open [http://localhost:5173](http://localhost:5173). Halloween: [http://localhost:5173/halloween/](http://localhost:5173/halloween/).
 
 ## Build
 
@@ -25,4 +25,4 @@ npm run preview
 
 ## Customize
 
-Edit party theme words in `src/data/partyWords.ts`.
+Edit party theme words in `src/data/partyWords.ts`. Halloween opposites live in `src/data/opposites.ts`.
