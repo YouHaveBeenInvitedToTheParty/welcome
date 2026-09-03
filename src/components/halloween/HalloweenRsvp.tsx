@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { DualText } from "./DualText";
 import { SectionNav } from "./SectionNav";
+import { shareText } from "../../utils/share";
 
 type ClubChoice = "house" | "club";
 
@@ -18,16 +19,8 @@ export function HalloweenRsvp() {
         ? "wants tickets for the club later"
         : "house only, drinks and snacks, no club";
     const message = `Halloween RSVP: ${name.trim()}, ${clubLine}.`;
-    const mailto = `mailto:?subject=${encodeURIComponent("Halloween RSVP")}&body=${encodeURIComponent(`${message}\n\nSend this to the hosts.`)}`;
-
-    try {
-      await navigator.clipboard.writeText(message);
-      setStatus("copied");
-    } catch {
-      setStatus("failed");
-    }
-
-    window.location.href = mailto;
+    const result = await shareText(message);
+    setStatus(result === "failed" ? "failed" : "copied");
   };
 
   return (
@@ -105,7 +98,7 @@ export function HalloweenRsvp() {
         {status === "copied" && (
           <DualText
             className="hw-calendar-msg"
-            order="Copied. Your mail app should open, send that message to the hosts."
+            order="Copied. Send that to the hosts on WhatsApp, Telegram, or a message."
             chaos="THE PACT IS WRITTEN. DELIVER IT."
           />
         )}
